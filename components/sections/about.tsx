@@ -20,7 +20,7 @@ const SKILLS = [
 
 function AboutSection() {
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-1">
       <span className="font-mono text-xs text-primary/50">ABOUT</span>
 
       <div>
@@ -38,7 +38,7 @@ function AboutSection() {
         {SKILLS.map(({ name, Icon }) => (
           <span
             key={name}
-            className="inline-flex items-center w-fit h-fit gap-1 rounded-md border px-2 py-0.5 font-mono text-xs text-primary"
+            className="inline-flex items-center w-fit h-fit gap-1 rounded-md border px-2 py-1 font-mono text-xs text-primary"
           >
             <Icon />
             {name}
