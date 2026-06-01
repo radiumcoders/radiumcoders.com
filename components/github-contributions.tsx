@@ -1,7 +1,7 @@
 "use client"
 
-import { use } from "react"
-import { format } from "date-fns"
+import { use, useMemo } from "react"
+import { format, subMonths, parseISO, isAfter } from "date-fns"
 
 import { cn } from "@/lib/utils"
 import { Spinner } from "@/components/ui/spinner"
@@ -31,10 +31,16 @@ export function GitHubContributions({
 }) {
   const data = use(contributions)
 
+  const tenMonthsAgo = subMonths(new Date(), 10)
+  const filteredData = useMemo(
+    () => data.filter((d) => isAfter(parseISO(d.date), tenMonthsAgo)),
+    [data]
+  )
+
   return (
     <ContributionGraph
       className={cn("mx-auto py-2", className)}
-      data={data}
+      data={filteredData}
       blockSize={11}
       blockMargin={3}
       blockRadius={2}

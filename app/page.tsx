@@ -1,10 +1,11 @@
 import Container from "@/components/container"
+import GitHubContributionsSection from "@/components/sections/github-contri"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 
 export default function Page() {
   return (
-    <Container className="min-h-screen py-5">
+    <Container className="min-h-screen py-5 flex gap-10 flex-col">
       <div className="flex items-end justify-between">
         <div className="flex items-end justify-start gap-3">
           <img src="/jay.png" alt="Jay" className="size-[2lh] rounded" />
@@ -28,6 +29,7 @@ export default function Page() {
           <ThemeToggle />
         </div>
       </div>
+      <GitHubContributionsSection />
     </Container>
   )
 }
