@@ -1,4 +1,22 @@
-const SKILLS = ["Next.js", "TanStack Start", "React", "TypeScript"]
+import {
+  NextJsIcon,
+  ReactIcon,
+  TypeScriptIcon,
+  TailwindIcon,
+  ShadcnIcon,
+  CursorIcon,
+  MotionIcon,
+} from "@/components/skill-icons"
+
+const SKILLS = [
+  { name: "Next.js", Icon: NextJsIcon },
+  { name: "React", Icon: ReactIcon },
+  { name: "TypeScript", Icon: TypeScriptIcon },
+  { name: "Tailwind", Icon: TailwindIcon },
+  { name: "Shadcn", Icon: ShadcnIcon },
+  { name: "Cursor", Icon: CursorIcon },
+  { name: "Motion", Icon: MotionIcon },
+]
 
 function AboutSection() {
   return (
@@ -16,21 +34,17 @@ function AboutSection() {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {SKILLS.map((skill) => (
+      <div className="flex gap-2">
+        {SKILLS.map(({ name, Icon }) => (
           <span
-            key={skill}
-            className="rounded-md border px-2 py-0.5 font-mono text-xs text-muted-foreground"
+            key={name}
+            className="inline-flex items-center w-fit h-fit gap-1 rounded-md border px-2 py-0.5 font-mono text-xs text-primary"
           >
-            {skill}
+            <Icon />
+            {name}
           </span>
         ))}
       </div>
-      {/* 
-      <p className="text-muted-foreground leading-relaxed">
-        Passionate about exploring new technologies and turning ideas into
-        reality through polished, thoughtfully crafted personal projects.
-      </p> */}
     </section>
   )
 }

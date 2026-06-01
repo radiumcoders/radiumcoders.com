@@ -1,12 +1,13 @@
 import Container from "@/components/container"
 import AboutSection from "@/components/sections/about"
 import GitHubContributionsSection from "@/components/sections/github-contri"
+import { DottedSeparator } from "@/components/separator"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 
 export default function Page() {
   return (
-    <Container className="min-h-screen py-5 flex gap-10 flex-col">
+    <Container className="flex min-h-screen flex-col gap-2 py-5">
       <div className="flex items-end justify-between">
         <div className="flex items-end justify-start gap-3">
           <img src="/jay.png" alt="Jay" className="size-[2lh] rounded" />
@@ -30,8 +31,12 @@ export default function Page() {
           <ThemeToggle />
         </div>
       </div>
+      <DottedSeparator />
+
       <AboutSection />
+      <DottedSeparator />
       <GitHubContributionsSection />
+      <DottedSeparator />
     </Container>
   )
 }
