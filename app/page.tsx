@@ -1,4 +1,5 @@
 import Container from "@/components/container"
+import AboutSection from "@/components/sections/about"
 import GitHubContributionsSection from "@/components/sections/github-contri"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
@@ -29,6 +30,7 @@ export default function Page() {
           <ThemeToggle />
         </div>
       </div>
+      <AboutSection />
       <GitHubContributionsSection />
     </Container>
   )

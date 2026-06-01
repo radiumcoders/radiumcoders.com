@@ -1,7 +1,7 @@
 "use client"
 
 import { use, useMemo } from "react"
-import { format, subMonths, parseISO, isAfter } from "date-fns"
+import { format, parseISO, isAfter } from "date-fns"
 
 import { cn } from "@/lib/utils"
 import { Spinner } from "@/components/ui/spinner"
@@ -31,10 +31,16 @@ export function GitHubContributions({
 }) {
   const data = use(contributions)
 
-  const tenMonthsAgo = subMonths(new Date(), 10)
+  const cutoff = useMemo(() => {
+    const lastDate = data.length > 0
+      ? new Date(parseISO(data[data.length - 1].date))
+      : new Date()
+    return new Date(lastDate.getFullYear() - 1, 6, 26) // July 26 of previous year (6 days before August)
+  }, [data])
+
   const filteredData = useMemo(
-    () => data.filter((d) => isAfter(parseISO(d.date), tenMonthsAgo)),
-    [data]
+    () => data.filter((d) => isAfter(parseISO(d.date), cutoff)),
+    [data, cutoff]
   )
 
   return (
