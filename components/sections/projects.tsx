@@ -1,6 +1,6 @@
-import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
 import { GitHubStars } from "@/components/github-stars"
 import { getStarCount } from "@/lib/get-stars"
+import { ArrowSquareOutIcon } from "@phosphor-icons/react/dist/ssr"
 
 type Project = {
   title: string
@@ -63,14 +63,14 @@ function ProjectCard({
     >
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h3 className="font-doto text-lg leading-tight font-bold text-primary">
+          <h3 className="font-doto text-lg leading-tight font-black text-primary">
             {project.title}
           </h3>
           {project.repo && stars !== undefined && (
             <GitHubStars repo={project.repo} stargazersCount={stars} />
           )}
         </div>
-        <ArrowSquareOut
+        <ArrowSquareOutIcon
           weight="bold"
           className="mt-0.5 size-3.5 shrink-0 text-primary/30 transition-colors group-hover:text-primary/60"
         />
@@ -122,7 +122,7 @@ export default function ProjectsSection() {
         className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
       >
         Get ur own project here
-        <ArrowSquareOut weight="bold" />
+        <ArrowSquareOutIcon weight="bold" />
       </a>
     </section>
   )

@@ -17,7 +17,7 @@ export default function Page() {
               Hey! it's me again,
             </span>
             <div className="flex items-baseline gap-2">
-              <h1 className="font-doto text-3xl leading-none font-bold text-primary">
+              <h1 className="font-doto text-3xl leading-none font-black text-primary">
                 Jay
               </h1>
               <Link href="https://x.com/radiumcoders" target="_blank">

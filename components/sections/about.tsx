@@ -24,7 +24,7 @@ function AboutSection() {
       <span className="font-mono text-xs text-primary/50">ABOUT</span>
 
       <div>
-        <h2 className="font-doto text-2xl leading-tight font-black text-primary">
+        <h2 className="font-doto text-xl leading-none font-black text-primary">
           Design Engineer
         </h2>
 
@@ -38,7 +38,7 @@ function AboutSection() {
         {SKILLS.map(({ name, Icon }) => (
           <span
             key={name}
-            className="inline-flex items-center w-fit h-fit gap-1 rounded-md border px-2 py-1 font-mono text-xs text-primary"
+            className="inline-flex h-fit w-fit items-center gap-1 rounded-md border px-2 py-1 font-mono text-xs text-primary"
           >
             <Icon />
             {name}
