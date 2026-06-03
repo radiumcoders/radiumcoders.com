@@ -1,36 +1,29 @@
 import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
+import { GitHubStars } from "@/components/github-stars"
+import { getStarCount } from "@/lib/get-stars"
 
-const PROJECTS = [
+type Project = {
+  title: string
+  link: string
+  description: string
+  technologies: string[]
+  repo?: string
+}
+
+const PROJECTS: Project[] = [
   {
     title: "EvilButtons",
-    date: "05.2026 — ∞",
     link: "https://evilbuttons.com",
     description:
       "shadcn/ui registry of playful, highly animated button components with evil aesthetics and killing interactions.",
     technologies: ["React", "Next.js", "Tailwind CSS", "ShadCN", "TypeScript"],
-  },
-  {
-    title: "DevStack",
-    date: "03.2026 — ∞",
-    link: "https://devstack.radiumcoders.com",
-    description: "Steal the exact stacks real developers use to scale.",
-    technologies: [
-      "React",
-      "Tanstack Start",
-      "Tailwind CSS",
-      "ShadCN",
-      "Neon",
-      "PostgreSQL",
-      "TypeScript",
-      "Better-Auth",
-    ],
+    repo: "radiumcoders/Evil-Buttons",
   }
 ]
 
-const OPENSOURCE_PROJECTS = [
+const OPENSOURCE_PROJECTS: Project[] = [
   {
     title: "Mellow Lines",
-    date: "01.2026 — Present",
     link: "https://mellowlines.dev/?utm_source=radiumcoders.com",
     description:
       "Transform code into motion. Create stunning, cinematic code walkthroughs in seconds. The ultimate free and open source tool for developers, content creators and educators.",
@@ -42,29 +35,40 @@ const OPENSOURCE_PROJECTS = [
       "TypeScript",
       "Motion",
     ],
+    repo: "kostyniuk/mellow-lines",
+  },
+  {
+    title: "Ghostex",
+    link: "https://ghostex.dev",
+    description:
+      "Native Agent CLIs manager for macOS. Ghostty Terminals + Codex App Features. Embedded browser & IDE with strong agent support.",
+    technologies: ["Zig", "macOS", "Ghostty", "CLI"],
+    repo: "maddada/Ghostex",
   },
 ]
 
 function ProjectCard({
   project,
+  stars,
 }: {
-  project: (typeof PROJECTS)[number]
+  project: Project
+  stars?: number
 }) {
   return (
     <a
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col gap-1 rounded-lg border border-border p-3 transition-colors hover:border-primary/30"
+      className="group flex flex-col gap-1 rounded-lg border-2 border-dotted border-border p-2.5 transition-all hover:border-primary/40 hover:animate-flash-hover"
     >
       <div className="flex items-start justify-between gap-2">
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-center gap-2">
           <h3 className="font-doto text-lg leading-tight font-bold text-primary">
             {project.title}
           </h3>
-          <span className="font-mono text-[11px] text-primary/40">
-            {project.date}
-          </span>
+          {project.repo && stars !== undefined && (
+            <GitHubStars repo={project.repo} stargazersCount={stars} />
+          )}
         </div>
         <ArrowSquareOut
           weight="bold"
@@ -88,6 +92,11 @@ function ProjectCard({
   )
 }
 
+async function ProjectWithStars({ project }: { project: Project }) {
+  const stars = project.repo ? await getStarCount(project.repo) : undefined
+  return <ProjectCard project={project} stars={stars} />
+}
+
 export default function ProjectsSection() {
   return (
     <section className="flex flex-col gap-1">
@@ -95,7 +104,7 @@ export default function ProjectsSection() {
 
       <div className="flex flex-col gap-2">
         {PROJECTS.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+          <ProjectWithStars key={project.title} project={project} />
         ))}
       </div>
 
@@ -104,7 +113,7 @@ export default function ProjectsSection() {
           OPEN SOURCE CONTRIBUTIONS
         </span>
         {OPENSOURCE_PROJECTS.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+          <ProjectWithStars key={project.title} project={project} />
         ))}
       </div>
 
