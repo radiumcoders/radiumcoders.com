@@ -1,6 +1,7 @@
 import Container from "@/components/container"
 import AboutSection from "@/components/sections/about"
 import GitHubContributionsSection from "@/components/sections/github-contri"
+import ProjectsSection from "@/components/sections/projects"
 import { DottedSeparator } from "@/components/separator"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
@@ -36,6 +37,8 @@ export default function Page() {
       <AboutSection />
       <DottedSeparator />
       <GitHubContributionsSection />
+      <DottedSeparator />
+      <ProjectsSection />
       <DottedSeparator />
     </Container>
   )
