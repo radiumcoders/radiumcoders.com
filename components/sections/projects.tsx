@@ -112,7 +112,7 @@ export default function ProjectsSection() {
 
       <div className="flex flex-col gap-2">
         <span className="font-mono text-[10px] tracking-wider text-primary/30 uppercase">
-          Open Source
+          Open Source CONTRIBUTIONS IN
         </span>
         {OPENSOURCE_PROJECTS.map((project) => (
           <ProjectWithStars key={project.title} project={project} />
@@ -123,7 +123,7 @@ export default function ProjectsSection() {
         href="mailto:hi@radiumcoders.com"
         className="mt-1 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
       >
-        Get ur own project here
+        Contact Me
         <ArrowSquareOutIcon weight="bold" />
       </a>
     </section>
