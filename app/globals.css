@@ -129,26 +129,6 @@
     }
 }
 
-@keyframes flash-hover {
-  0%,
-  100% {
-    background-color: transparent;
-  }
-  25% {
-    background-color: var(--muted);
-  }
-  50% {
-    background-color: transparent;
-  }
-  75% {
-    background-color: var(--muted);
-  }
-}
-
-@utility animate-flash-hover {
-  animation: flash-hover 500ms ease-in-out infinite;
-}
-
 @utility link-underline {
     @apply underline decoration-current/30 decoration-1 underline-offset-3 transition-colors hover:decoration-current;
 }
