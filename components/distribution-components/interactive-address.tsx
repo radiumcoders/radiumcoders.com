@@ -6,22 +6,11 @@ import {
   XLogoIcon,
 } from "@phosphor-icons/react"
 import { AnimatePresence, motion } from "motion/react"
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 type HighlightType = "name" | "website" | "email" | "twitter"
 
-const icons: {
-  label: string
-  type: HighlightType
-  icon: React.ElementType
-}[] = [
-  { label: "Name", type: "name", icon: UserIcon },
-  { label: "Email", type: "email", icon: MailboxIcon },
-  { label: "Website", type: "website", icon: GlobeIcon },
-  { label: "Twitter", type: "twitter", icon: XLogoIcon },
-]
-
-export type data = {
+export type Data = {
   name: string
   email: string
   website: string
@@ -31,6 +20,7 @@ export type data = {
 const DASH = 6
 const GAP = 4
 const UNIT = DASH + GAP
+
 function DashedUnderline({ active }: { active: boolean }) {
   return (
     <svg
@@ -55,7 +45,7 @@ function DashedUnderline({ active }: { active: boolean }) {
             attributeName="stroke-dashoffset"
             from="0"
             to={`-${UNIT * 10}`}
-            dur="10s"
+            dur="5s"
             repeatCount="indefinite"
           />
         )}
@@ -64,27 +54,56 @@ function DashedUnderline({ active }: { active: boolean }) {
   )
 }
 
-function Address({ data }: { data: data }) {
+function Address({ data }: { data: Data }) {
   const [highlight, setHighlight] = useState<HighlightType | null>(null)
 
-  const rows: { type: HighlightType; value: string }[] = [
-    { type: "name", value: data.name },
-    { type: "email", value: data.email },
-    { type: "website", value: data.website },
-    { type: "twitter", value: data.twitter },
+  const rows: { type: HighlightType; value: string; href: string }[] = [
+    { type: "name", value: data.name, href: "#" },
+    { type: "email", value: data.email, href: `mailto:${data.email}` },
+    { type: "website", value: data.website, href: data.website },
+    {
+      type: "twitter",
+      value: data.twitter,
+      href: `https://x.com/${data.twitter.replace("@", "")}`,
+    },
+  ]
+
+  const icons: {
+    label: string
+    type: HighlightType
+    icon: React.ElementType
+    href: string
+  }[] = [
+    { label: "Name", type: "name", icon: UserIcon, href: "#" },
+    {
+      label: "Email",
+      type: "email",
+      icon: MailboxIcon,
+      href: `mailto:${data.email}`,
+    },
+    { label: "Website", type: "website", icon: GlobeIcon, href: `/` },
+    {
+      label: "Twitter",
+      type: "twitter",
+      icon: XLogoIcon,
+      href: `https://x.com/${data.twitter.replace("@", "")}`,
+    },
   ]
 
   return (
     <div className="flex items-center justify-center gap-2">
       <div className="flex min-h-8 flex-col items-center gap-1">
-        {icons.map(({ label, type, icon: Icon }) => (
-          <motion.button
+        {icons.map(({ label, type, icon: Icon, href }) => (
+          <motion.a
             key={label}
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
             onMouseEnter={() => setHighlight(type)}
             onMouseLeave={() => setHighlight(null)}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="relative rounded p-2"
+            className="relative rounded-lg p-2"
           >
             <AnimatePresence>
               {highlight === type && (
@@ -99,18 +118,21 @@ function Address({ data }: { data: data }) {
               )}
             </AnimatePresence>
             <Icon size={24} className="relative z-10" />
-          </motion.button>
+          </motion.a>
         ))}
       </div>
 
       <div className="flex flex-col gap-2 font-doto text-3xl font-black">
-        {rows.map(({ type, value }) => {
+        {rows.map(({ type, value, href }) => {
           const isActive = highlight === type
           const isDimmed = highlight !== null && !isActive
           return (
-            <motion.span
+            <motion.a
               key={type}
-              className="relative inline-block w-fit"
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="relative inline-block"
               animate={{
                 filter: isDimmed ? "blur(4px)" : "blur(0px)",
                 opacity: isDimmed ? 0.3 : 1,
@@ -119,7 +141,7 @@ function Address({ data }: { data: data }) {
             >
               {value}
               <DashedUnderline active={isActive} />
-            </motion.span>
+            </motion.a>
           )
         })}
       </div>
