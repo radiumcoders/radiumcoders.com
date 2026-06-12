@@ -1,0 +1,6 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "radiumcoders.com",
+  "homepage": "https://github.com/radiumcoders/radiumcoders.com",
+  "include": ["components/distribution-components/registry.json"]
+}

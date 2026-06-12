@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "interactive-address",
+      "type": "registry:component",
+      "title": "Interactive Address",
+      "description": "An interactive contact address with icon links, hover highlights, animated dashed underlines, and blur transitions.",
+      "dependencies": ["motion", "@phosphor-icons/react"],
+      "categories": ["distribution", "interactive"],
+      "cssVars": {
+        "theme": {
+          "font-doto": "var(--font-doto)"
+        }
+      },
+      "docs": "This component uses the Doto font via the `font-doto` utility. Load Doto with `next/font/google` and add its CSS variable to your root layout, for example: `const doto = Doto({ subsets: ['latin'], variable: '--font-doto' })`.",
+      "files": [
+        {
+          "path": "interactive-address.tsx",
+          "type": "registry:component",
+          "target": "@components/distribution-components/interactive-address.tsx"
+        }
+      ]
+    }
+  ]
+}
