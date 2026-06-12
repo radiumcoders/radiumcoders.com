@@ -1,0 +1,245 @@
+"use client"
+
+export function IdeaDesignProductFlow() {
+  return (
+    <svg
+      width="100%"
+      viewBox="0 0 420 80"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <filter id="dotGlowDark" x="-200%" y="-200%" width="500%" height="500%">
+          <feDropShadow
+            dx="0"
+            dy="0"
+            stdDeviation="3"
+            floodColor="#ffffff"
+            floodOpacity="0.9"
+          />
+        </filter>
+        <filter id="boxShadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow
+            dx="0"
+            dy="2"
+            stdDeviation="3"
+            floodColor="#000000"
+            floodOpacity="0.25"
+          />
+        </filter>
+      </defs>
+
+      <line
+        x1="88"
+        y1="38"
+        x2="168"
+        y2="38"
+        stroke="currentColor"
+        strokeOpacity={0.15}
+        strokeDasharray="3 4"
+      />
+      <line
+        x1="252"
+        y1="38"
+        x2="332"
+        y2="38"
+        stroke="currentColor"
+        strokeOpacity={0.15}
+        strokeDasharray="3 4"
+      />
+
+      {/* Idea */}
+      <rect
+        x="28"
+        y="16"
+        width="44"
+        height="44"
+        rx="8"
+        fill="currentColor"
+        fillOpacity={0.03}
+        stroke="currentColor"
+        strokeOpacity={0.15}
+        strokeWidth="0.5"
+        filter="url(#boxShadow)"
+      />
+      <text
+        x="33"
+        y="56"
+        fontSize="7"
+        fill="currentColor"
+        fillOpacity={0.6}
+        className="font-mono"
+      >
+        Idea
+      </text>
+      <circle cx="64" cy="24" r="3.5" fill="currentColor">
+        <animate
+          attributeName="fill-opacity"
+          values="1;1;0.2;0.2;0.2;0.2"
+          keyTimes="0;0.16;0.2;0.66;0.83;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="filter"
+          values="url(#dotGlowDark);url(#dotGlowDark);none;none;none;none"
+          keyTimes="0;0.16;0.2;0.66;0.83;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      {/* Design */}
+      <rect
+        x="188"
+        y="16"
+        width="44"
+        height="44"
+        rx="8"
+        fill="currentColor"
+        fillOpacity={0.03}
+        stroke="currentColor"
+        strokeOpacity={0.15}
+        strokeWidth="0.5"
+        filter="url(#boxShadow)"
+      />
+      <text
+        x="193"
+        y="56"
+        fontSize="7"
+        fill="currentColor"
+        fillOpacity={0.6}
+        className="font-mono"
+      >
+        Design
+      </text>
+      <circle cx="224" cy="24" r="3.5" fill="currentColor">
+        <animate
+          attributeName="fill-opacity"
+          values="0.2;0.2;1;1;0.2;0.2"
+          keyTimes="0;0.33;0.4;0.5;0.53;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="filter"
+          values="none;none;url(#dotGlowDark);url(#dotGlowDark);none;none"
+          keyTimes="0;0.33;0.4;0.5;0.53;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      {/* Product */}
+      <rect
+        x="348"
+        y="16"
+        width="44"
+        height="44"
+        rx="8"
+        fill="currentColor"
+        fillOpacity={0.03}
+        stroke="currentColor"
+        strokeOpacity={0.15}
+        strokeWidth="0.5"
+        filter="url(#boxShadow)"
+      />
+      <text
+        x="353"
+        y="56"
+        fontSize="7"
+        fill="currentColor"
+        fillOpacity={0.6}
+        className="font-mono"
+      >
+        Product
+      </text>
+      <circle cx="384" cy="24" r="3.5" fill="currentColor">
+        <animate
+          attributeName="fill-opacity"
+          values="0.2;0.2;1;1"
+          keyTimes="0;0.66;0.73;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="filter"
+          values="none;none;url(#dotGlowDark);url(#dotGlowDark)"
+          keyTimes="0;0.66;0.73;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      {/* Traveling box: Idea -> Design */}
+      <rect
+        width="44"
+        height="44"
+        rx="8"
+        fill="currentColor"
+        fillOpacity={0.02}
+        stroke="currentColor"
+        strokeOpacity={0.25}
+        strokeWidth="0.5"
+        opacity={0}
+      >
+        <animate
+          attributeName="opacity"
+          values="0;0;1;1;0;0"
+          keyTimes="0;0.2;0.22;0.3;0.32;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="x"
+          values="28;28;28;188;188;188"
+          keyTimes="0;0.2;0.22;0.3;0.32;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="y"
+          values="16;16;16;16;16;16"
+          keyTimes="0;0.2;0.22;0.3;0.32;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </rect>
+
+      {/* Traveling box: Design -> Product */}
+      <rect
+        width="44"
+        height="44"
+        rx="8"
+        fill="currentColor"
+        fillOpacity={0.02}
+        stroke="currentColor"
+        strokeOpacity={0.25}
+        strokeWidth="0.5"
+        opacity={0}
+      >
+        <animate
+          attributeName="opacity"
+          values="0;0;1;1;0;0"
+          keyTimes="0;0.53;0.55;0.63;0.65;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="x"
+          values="188;188;188;348;348;348"
+          keyTimes="0;0.53;0.55;0.63;0.65;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="y"
+          values="16;16;16;16;16;16"
+          keyTimes="0;0.53;0.55;0.63;0.65;1"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </rect>
+    </svg>
+  )
+}
